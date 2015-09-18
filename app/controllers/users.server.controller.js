@@ -16,7 +16,7 @@ exports.list = function(req, res, next) {
             skip: 1,
             limit: 1
         }, function(err, users) {
-        if(err) {
+        if (err) {
             return next(err)
         } else {
             res.json(users)
@@ -35,6 +35,15 @@ exports.userByID = function(req, res, next, id) {
         } else {
             req.user = user
             next()
+        }
+    })
+}
+exports.update = function(req, res, next) {
+    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+        if (err) {
+            return next(err)
+        } else {
+            res.json(user)
         }
     })
 }
