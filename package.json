@@ -2,7 +2,7 @@
   "name": "MEAN",
   "version": "0.0.3",
   "dependencies": {
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.14.0",
     "compression": "^1.5.2",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
