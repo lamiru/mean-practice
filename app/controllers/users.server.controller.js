@@ -47,3 +47,12 @@ exports.update = function(req, res, next) {
         }
     })
 }
+exports.delete = function(req, res, next) {
+    req.user.remove(function(err) {
+        if (err) {
+            return next(err)
+        } else {
+            res.json(req.user)
+        }
+    })
+}
