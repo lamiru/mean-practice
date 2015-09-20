@@ -58,3 +58,20 @@ UserSchema.virtual('fullName').get(function() {
 UserSchema.set('toJSON', { getters: true, virtuals: true })
 
 mongoose.model('User', UserSchema)
+
+var PostSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
+})
+
+mongoose.model('Post', PostSchema)
