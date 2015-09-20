@@ -4,12 +4,22 @@ var Schema = mongoose.Schema
 var UserSchema = new Schema({
     firstName: String,
     lastName: String,
-    email: String,
+    email: {
+        type: String,
+        index: true,
+        match: /.+\@.+\..+/
+    },
     username: {
         type: String,
-        trim: true
+        trim: true,
+        unique: true,
+        requred: true
     },
     password: String,
+    role: {
+        type: String,
+        enum: ['Admin', 'Owner', 'User']
+    },
     website: {
         type: String,
         get: function(url) {
