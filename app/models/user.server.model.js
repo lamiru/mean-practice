@@ -29,6 +29,14 @@ var UserSchema = new Schema({
     }
 })
 
-UserSchema.set('toJSON', { getters: true })
+UserSchema.virtual('fullName').get(function() {
+    return this.firstName + ' ' + this.lastName
+}).set(function(fullName) {
+    var splitName = fullName.split(' ')
+    this.firstName = splitName[0] || ''
+    this.lastName = splitName[1] || ''
+})
+
+UserSchema.set('toJSON', { getters: true, virtuals: true })
 
 mongoose.model('User', UserSchema)
