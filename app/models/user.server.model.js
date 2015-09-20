@@ -15,7 +15,15 @@ var UserSchema = new Schema({
         unique: true,
         requred: true
     },
-    password: String,
+    password: {
+        type: String,
+        validate: [
+            function(password) {
+                return password.length >= 6
+            },
+            'Password should have more than 5 characters.'
+        ]
+    },
     role: {
         type: String,
         enum: ['Admin', 'Owner', 'User']
