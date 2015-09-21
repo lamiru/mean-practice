@@ -4,8 +4,7 @@
     <title><%= title %></title>
 </head>
 <body>
-    <% if (userFullName) { %>
-        <h2>Hello <%= userFullName %></h2>
+    <% if (user) { %>
         <a href="/signout">Sign out</a>
     <% } else { %>
         <a href="/signup">Sign Up</a>
@@ -13,6 +12,10 @@
     <% } %>
 
     <section ng-view></section>
+
+    <script type="text/javascript">
+        window.user = <%- user || 'null' %>
+    </script>
 
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
