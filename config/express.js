@@ -5,6 +5,7 @@ var compress = require('compression')
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override')
 var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)
 var flash = require('connect-flash')
 var passport = require('passport')
 
@@ -26,7 +27,8 @@ module.exports = function() {
     app.use(session({
         saveUninitialized: true,
         resave: true,
-        secret: config.sessionSecret
+        secret: config.sessionSecret,
+        store: new MongoStore({ url: config.db })
     }))
 
     app.set('views', './app/views')
